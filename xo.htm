@@ -38,6 +38,14 @@ for (i=0;i<20;i++) {
 iLastUserMove=0;
 jLastUserMove=0;
 
+/**
+* Функция обработки клика по полю
+*
+* Обрабатывает нажатие по полю и заполнение поля пустыми блоками.
+* Так же обрабатывается нажатие по заполненной клетке.
+*
+*/
+
 function clk(iMove,jMove) {
     if (myTurn) return; 
     if (f[iMove][jMove]!=0) {alert('This square is not empty! Please choose another.'); return; }
@@ -53,6 +61,13 @@ function clk(iMove,jMove) {
     else setTimeout("machineMove(iLastUserMove,jLastUserMove);",dly);
 }
 
+/**
+* Функция заполнения поля компьютером
+*
+* В зависимости от поставленной пользователем метки
+* компьютер пытается перекрыть ближайший символ.
+*
+*/
 
 function machineMove(iUser,jUser) {
     maxS=evaluatePos(s,userSq);
@@ -98,6 +113,13 @@ function machineMove(iUser,jUser) {
     else setTimeout("myTurn=false;",950);
 }
 
+/**
+* Функция определение детей
+*
+* Определяет массив из точек, которые нужно соединить.
+*
+*/
+
 function hasNeighbors(i,j) {
     if (j>0 && f[i][j-1]!=0) return 1;
     if (j+1<boardSize && f[i][j+1]!=0) return 1; 
@@ -118,6 +140,14 @@ function hasNeighbors(i,j) {
             nPos=new Array();
             dirA=new Array();
 
+/**
+* Функция определения выигрышной позиции
+*
+* Отвечает за отслеживание соединяемых точек и получения
+* из них определенного количества.
+*
+*/			
+			
 function winningPos(i,j,mySq) {
     test3=0;
     L=1;
@@ -203,6 +233,14 @@ function winningPos(i,j,mySq) {
     if (test3==2) return twoThrees;
     return -1;
 }
+
+/**
+* Функция подсчета позиции
+*
+* Основная функция для разменещия и подсчета
+* позиции точек.
+*
+*/
 
 function evaluatePos(a,mySq) {
     maxA=-1;
@@ -355,6 +393,12 @@ function evaluatePos(a,mySq) {
 
 }
 
+/**
+* Функция отрисовки клетки
+*
+* Рисует пустую клетку из файла.
+*
+*/
 
 function drawSquare(par1,par2,par3) {
  
@@ -370,6 +414,14 @@ function drawSquare(par1,par2,par3) {
             buf='';
 
 
+/**
+* Функция отрисовки игрового поля
+*
+* Отвечает за оформление и отрисовку 
+* игрового поля.
+*
+*/			
+			
 function writeBoard () {
  
     buf+='<html><head><title>Board</title>';
@@ -400,6 +452,16 @@ function writeBoard () {
  
     buf='';
 }
+
+/**
+* Функция сброса игры
+*
+* Сбрасывает игру отрисовывая
+* при этом первоначальное поле,
+* которое зависит от выбранных параметров
+* перед стартом.
+*
+*/
 
 function resetGame() {
  
@@ -435,6 +497,15 @@ function resetGame() {
  
     myTurn=false;
 }
+
+/**
+* Функция - заглушка
+*
+* Инициализирующая функция
+* содержит в себе вызовы функций
+* для отрисовки поля и сброса игры.
+*
+*/
 
 function init() {
  
