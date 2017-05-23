@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. --><!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "docbookV4.5/docbookx.dtd" []>
+<appendix>
+  <appendixinfo>
+    <title>Руководство программиста (Огарок А. ИПО-14А)</title>
+    <abstract>
+      <title>Крестики нолики</title>
+      <para>Проект &quot;Крестики нолики&quot; позволяет играть на поле разных масштабов с самописным инт.</para>
+      <para>Под проект нарисованы управляющие кнопки. Крестики и нолики.</para>
+    </abstract>
+  </appendixinfo>
+  <title>Сценарий №1</title>
+  <abstract>
+    <title>Сценарий использования 1 - Выбор текущей даты</title>
+    <para>Обработка нажатий пользователя.</para>
+    <para>Функция обрабатывающая нажатие пользователя (Заполнение клетки) и определяет ход соперника. Так же используется функция оповещения пользователя о победе.</para>
+  </abstract>
+  <programlisting>function clk(iMove,jMove) {
+ if (myTurn) return; 
+ if (f[iMove][jMove]!=0) {alert(&apos;This square is not empty! Please choose another.&apos;); return; }
+ f[iMove][jMove]=userSq;
+ drawSquare(iMove,jMove,userSq);
+ myTurn=true;
+ iLastUserMove=iMove;
+ jLastUserMove=jMove;
+
+ dly=(document.images)?10:boardSize*30;
+
+ if (winningPos(iMove,jMove,userSq)==winningMove) setTimeout(&quot;alert(&apos;You won!&apos;);&quot;,dly);
+ else setTimeout(&quot;machineMove(iLastUserMove,jLastUserMove);&quot;,dly);
+}</programlisting>
+  <abstract>
+    <title>Сценарий использования 2 - Отрисовка поля</title>
+    <para>Пользователь начинает игру и отрисовывается поле необходимого размера (указанного в параметрах перед игрой).</para>
+    <para>В качестве клеток подгружается заранее созданное изображение</para>
+  </abstract>
+  <programlisting>function writeBoard () {
+ buf+=&apos;&lt;html&gt;&lt;head&gt;&lt;title&gt;Board&lt;/title&gt;&apos;;
+ if (navigator.appName==&quot;Netscape&quot;) buf+=&apos;&lt;base href=&quot;&apos;+top.document.location+&apos;&quot;&gt;&apos;;
+ buf+=&apos;&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot;&gt;&lt;a name=&quot;s&quot;&gt;&lt;/a&gt;&lt;center&gt;&lt;pre&apos;;
+ for (i=0;i&lt;boardSize;i++) {
+  for (j=0;j&lt;boardSize;j++) {
+   buf+=&apos;\n&gt;&lt;a href=&quot;#s&quot; onClick=&quot;top.clk(&apos;+i+&apos;,&apos;+j+&apos;);if(top.ie4)this.blur();return false;&quot; &gt;&lt;img name=&quot;s&apos;+i+&apos;_&apos;+j+&apos;&quot; src=&quot;s&apos;+f[i][j]+&apos;.gif&quot; width=16 height=16 border=0&gt;&lt;/a&apos;; 
+  }
+  buf+=&apos;\n&gt;&lt;img src=&quot;g.gif&quot; width=1 height=16&gt;&lt;br&apos;;
+  if (buf.length&gt;20000) {top.f1.document.writeln(buf); buf=&apos;&apos;;}
+ }
+ buf+=&apos;\n&gt;&lt;img src=&quot;g.gif&quot; width=&apos;+(boardSize*16+1)+&apos; height=1&gt;&lt;/pre&gt;&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;&apos;;
+ top.f1.document.writeln(buf);
+ top.f1.document.close();
+ buf=&apos;&apos;;
+}</programlisting>
+  <abstract>
+    <title>Сценарий использования 3 - Сброс игры</title>
+    <para>Пользователь вызывает при клике мышки на кнопку сброс игры.</para>
+    <para>Обновляет игровое поле и перерисовывает блоки (клетки) по новой исходя из указанных перед игрой параметров.</para>
+  </abstract>
+  <programlisting>function resetGame() {
+ if (!top.f1.document) return;
+ for (i=0;i&lt;20;i++) {
+  for (j=0;j&lt;20;j++) {
+   f[i][j]=0;
+  }
+ }
+ if (document.images) {
+  if (!top.f1.document.s9_9) return;
+  for (i=0;i&lt;boardSize;i++) {
+   for (j=0;j&lt;boardSize;j++) {
+    eval(&apos;self.f1.document.s&apos;+i+&apos;_&apos;+j+&apos;.src=bImg.src&apos;);  
+   }
+  }
+ }
+ else writeBoard();
+ myTurn=false;
+}</programlisting>
+</appendix>
