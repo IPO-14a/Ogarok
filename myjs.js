@@ -37,15 +37,22 @@ jLastUserMove=0;
 *
 */
 function clk(iMove,jMove) {
-    if (myTurn) return; 
-    if (f[iMove][jMove]!=0) {alert('This square is not empty! Please choose another.'); return; }
+    if (myTurn) {
+	    return;
+    }
+    if (f[iMove][jMove]!=0) {
+	    alert('This square is not empty! Please choose another.'); 
+	    return; 
+    }
     f[iMove][jMove]=userSq;
     drawSquare(iMove,jMove,userSq);
     myTurn=true;
     iLastUserMove=iMove;
     jLastUserMove=jMove;
     dly=(document.images)?10:boardSize*30;
-    if (winningPos(iMove,jMove,userSq)==winningMove) setTimeout("alert('You won!');",dly);
+    if (winningPos(iMove,jMove,userSq)==winningMove) {
+	    setTimeout("alert('You won!');",dly);
+    }
     else setTimeout("machineMove(iLastUserMove,jLastUserMove);",dly);
 }
 /**
@@ -91,7 +98,9 @@ function machineMove(iUser,jUser) {
     else {
         drawSquare(iMach,jMach,machSq);
     }
-    if (winningPos(iMach,jMach,machSq)==winningMove) setTimeout("alert('I won!')",900);
+    if (winningPos(iMach,jMach,machSq)==winningMove) {
+	    setTimeout("alert('I won!')",900);
+    }
     else setTimeout("myTurn=false;",950);
 }
 /**
@@ -101,17 +110,32 @@ function machineMove(iUser,jUser) {
 *
 */
 function hasNeighbors(i,j) {
-    if (j>0 && f[i][j-1]!=0) return 1;
-    if (j+1<boardSize && f[i][j+1]!=0) return 1; 
+    if (j>0 && f[i][j-1]!=0) {
+	    return 1;
+    }
+    if (j+1<boardSize && f[i][j+1]!=0) {
+	    return 1;
+    }
     if (i>0) {
-        if (f[i-1][j]!=0) return 1;
-        if (j>0 && f[i-1][j-1]!=0) return 1;
-        if (j+1<boardSize && f[i-1][j+1]!=0) return 1;
+        if (f[i-1][j]!=0) {
+		return 1;
+	}
+        if (j>0 && f[i-1][j-1]!=0) {
+		return 1;
+	}
+        if (j+1<boardSize && f[i-1][j+1]!=0) {
+		return 1;}
     }
     if (i+1<boardSize) {
-        if (f[i+1][j]!=0) return 1;
-        if (j>0 && f[i+1][j-1]!=0) return 1;
-        if (j+1<boardSize && f[i+1][j+1]!=0) return 1;
+        if (f[i+1][j]!=0) {
+		return 1;
+	}
+        if (j>0 && f[i+1][j-1]!=0) {
+		return 1;
+	}
+        if (j+1<boardSize && f[i+1][j+1]!=0) {
+		return 1;
+	}
     }
     return 0;
 }
@@ -123,7 +147,7 @@ function hasNeighbors(i,j) {
 *
 * Отвечает за отслеживание соединяемых точек и получения
 * из них определенного количества.
-*
+*-----------------------------------------
 */			
 			
 function winningPos(i,j,mySq) {
