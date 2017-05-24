@@ -1,18 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- This document was created with Syntext Serna Free. --><!DOCTYPE <article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "docbookV4.5/docbookx.dtd" []>
 <article>
+
     <title>Руководство программиста (Огарок А. ИПО-14А)</title>
     <section>
       <title>Крестики нолики</title>
       <para>Проект &quot;Крестики нолики&quot; позволяет играть на поле разных масштабов с самописным инт.</para>
       <para>Под проект нарисованы управляющие кнопки. Крестики и нолики.</para>
     </section>
-    <title>Сценарий №1</title>
+  
+  <title>Сценарий №1</title>
   <section>
+    <title>Сценарий использования 1 - Выбор текущей даты</title>
     <para>Обработка нажатий пользователя.</para>
     <para>Функция обрабатывающая нажатие пользователя (Заполнение клетки) и определяет ход соперника. Так же используется функция оповещения пользователя о победе.</para>
-  </section>
-  <programlisting>function clk(iMove,jMove) {
+    <programlisting>function clk(iMove,jMove) {
  if (myTurn) return; 
  if (f[iMove][jMove]!=0) {alert(&apos;This square is not empty! Please choose another.&apos;); return; }
  f[iMove][jMove]=userSq;
@@ -26,12 +28,13 @@
  if (winningPos(iMove,jMove,userSq)==winningMove) setTimeout(&quot;alert(&apos;You won!&apos;);&quot;,dly);
  else setTimeout(&quot;machineMove(iLastUserMove,jLastUserMove);&quot;,dly);
 }</programlisting>
+    </section>
+
   <section>
     <title>Сценарий использования 2 - Отрисовка поля</title>
     <para>Пользователь начинает игру и отрисовывается поле необходимого размера (указанного в параметрах перед игрой).</para>
     <para>В качестве клеток подгружается заранее созданное изображение</para>
-  </section>
-  <programlisting>function writeBoard () {
+    <programlisting>function writeBoard () {
  buf+=&apos;&lt;html&gt;&lt;head&gt;&lt;title&gt;Board&lt;/title&gt;&apos;;
  if (navigator.appName==&quot;Netscape&quot;) buf+=&apos;&lt;base href=&quot;&apos;+top.document.location+&apos;&quot;&gt;&apos;;
  buf+=&apos;&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot;&gt;&lt;a name=&quot;s&quot;&gt;&lt;/a&gt;&lt;center&gt;&lt;pre&apos;;
@@ -46,12 +49,13 @@
  top.f1.document.writeln(buf);
  top.f1.document.close();
  buf=&apos;&apos;;
-}</programlisting>
+}</programlisting> 
+</section>
+
   <section>
     <title>Сценарий использования 3 - Сброс игры</title>
     <para>Пользователь вызывает при клике мышки на кнопку сброс игры.</para>
     <para>Обновляет игровое поле и перерисовывает блоки (клетки) по новой исходя из указанных перед игрой параметров.</para>
-  </section>
   <programlisting>function resetGame() {
  if (!top.f1.document) return;
  for (i=0;i&lt;20;i++) {
@@ -70,4 +74,6 @@
  else writeBoard();
  myTurn=false;
 }</programlisting>
+    </section>
+  
 </article>
