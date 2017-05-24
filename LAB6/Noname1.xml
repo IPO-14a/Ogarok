@@ -49,7 +49,6 @@
  buf=&apos;&apos;;
 }</programlisting> 
 </section>
-
     <section>
     <title>Сценарий использования 3 - Сброс игры</title>
     <para>Пользователь вызывает при клике мышки на кнопку сброс игры.</para>
@@ -73,5 +72,4 @@
  myTurn=false;
 }</programlisting>
     </section>
-  
-</article>
+  </article>
