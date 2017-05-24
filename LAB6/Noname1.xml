@@ -1,15 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- This document was created with Syntext Serna Free. --><!DOCTYPE <article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "docbookV4.5/docbookx.dtd" []>
 <article>
-
     <title>Руководство программиста (Огарок А. ИПО-14А)</title>
     <section>
       <title>Крестики нолики</title>
       <para>Проект &quot;Крестики нолики&quot; позволяет играть на поле разных масштабов с самописным инт.</para>
       <para>Под проект нарисованы управляющие кнопки. Крестики и нолики.</para>
     </section>
-  
-  <title>Сценарий №1</title>
+    <title>Сценарий №1</title>
   <section>
     <title>Сценарий использования 1 - Выбор текущей даты</title>
     <para>Обработка нажатий пользователя.</para>
