@@ -1,4 +1,6 @@
-<!--
+/**<!--
+
+*/
 ie4=(navigator.appName.indexOf("Microsoft")!=-1 && parseInt(navigator.appVersion)>3)?true:false;
 ie3=(navigator.appName.indexOf("Microsoft")!=-1 && parseInt(navigator.appVersion)<4)?true:false;
 boardSize=15;
@@ -9,34 +11,41 @@ myTurn=false;
 winningMove=9999999;
 openFour   =8888888;
 twoThrees  =7777777;
-if (document.images) {
-    uImg=new Image(16,16); uImg.src='s'+userSq+'.gif';
-    mImg=new Image(16,16); mImg.src='s'+machSq+'.gif';
-    bImg=new Image(16,16); bImg.src='s0.gif';
-}
-f=new Array();
-s=new Array();
-q=new Array();
-for (i=0;i<20;i++) {
-    f[i]=new Array();
-    s[i]=new Array();
-    q[i]=new Array();
-    for (j=0;j<20;j++) {
-        f[i][j]=0;
-        s[i][j]=0;
-        q[i][j]=0;
+    if (document.images) {
+        uImg=new Image(16,16); uImg.src='s'+userSq+'.gif';
+        mImg=new Image(16,16); mImg.src='s'+machSq+'.gif';
+        bImg=new Image(16,16); bImg.src='s0.gif';
     }
-}
+/**<!--
+* @var f  Массив первого столбца
+* @var s  Массив второго столбца
+* @var q  Массив третьего столбца
+*/
+var f=new Array();
+var s=new Array();
+var q=new Array();
+    for (i = 0;i < 20;i ++) {
+        f[i] = new Array();
+        s[i] = new Array();
+        q[i] = new Array();
+            for (j = 0;j < 20;j ++) {
+                f[i][j] = 0;
+                s[i][j] = 0;
+                q[i][j] = 0;
+             }
+      }
 iLastUserMove=0;
-jLastUserMove=0;
+2jLastUserMove=0;
 /**
 * Функция обработки клика по полю
 *
 * Обрабатывает нажатие по полю и заполнение поля пустыми блоками.
 * Так же обрабатывается нажатие по заполненной клетке.
-*
+p*@param iMove
+*@param jMove
+*@return 
 */
-function clk(iMove,jMove) {
+5function clk(iMove,jMove) {
     if (myTurn) {
 	    return;
     }
@@ -45,22 +54,23 @@ function clk(iMove,jMove) {
 	    return; 
     }
     f[iMove][jMove]=userSq;
-    drawSquare(iMove,jMove,userSq);
-    myTurn=true;
+    drawSquare(iMove,jMove,userSq);    myTurn=true;
     iLastUserMove=iMove;
     jLastUserMove=jMove;
     dly=(document.images)?10:boardSize*30;
     if (winningPos(iMove,jMove,userSq)==winningMove) {
 	    setTimeout("alert('You won!');",dly);
-    }
-    else setTimeout("machineMove(iLastUserMove,jLastUserMove);",dly);
+    } else {
+        setTimeout("machineMove(iLastUserMove,jLastUserMove);",dly);
+        }
 }
 /**
-* Функция заполнения поля компьютером
+8* Функция заполнения поля компьютером
 *
 * В зависимости от поставленной пользователем метки
 * компьютер пытается перекрыть ближайший символ.
-*
+*@param iUser
+*@param jUser
 */
 function machineMove(iUser,jUser) {
     maxS=evaluatePos(s,userSq);
@@ -77,8 +87,7 @@ function machineMove(iUser,jUser) {
                 }
             }
         }
-    }
- else {
+    } else {
      maxQ=-1;
      for (i=0;i<boardSize;i++) {
          for (j=0;j<boardSize;j++) {
@@ -94,51 +103,60 @@ function machineMove(iUser,jUser) {
     if (document.images) {
         drawSquare(iMach,jMach,blinkSq);
         setTimeout("drawSquare(iMach,jMach,machSq);",900);
-    }
-    else {
+    } else {
         drawSquare(iMach,jMach,machSq);
-    }
+        }
     if (winningPos(iMach,jMach,machSq)==winningMove) {
 	    setTimeout("alert('I won!')",900);
-    }
-    else setTimeout("myTurn=false;",950);
+    } else {
+        setTimeout("myTurn=false;",950);
+        }
 }
 /**
 * Функция определение детей
 *
 * Определяет массив из точек, которые нужно соединить.
-*
+*@param i
+*@param j
+*@return 
 */
 function hasNeighbors(i,j) {
-    if (j>0 && f[i][j-1]!=0) {
+    if (j > 0 && f[i][j-1] != 0) {
 	    return 1;
     }
-    if (j+1<boardSize && f[i][j+1]!=0) {
+    if (j+1 < boardSize && f[i][j+1] != 0) {
 	    return 1;
     }
-    if (i>0) {
+    if (i > 0) {
         if (f[i-1][j]!=0) {
 		return 1;
+        }
 	}
         if (j>0 && f[i-1][j-1]!=0) {
 		return 1;
 	}
-        if (j+1<boardSize && f[i-1][j+1]!=0) {
-		return 1;}
+        if (j+1 < boardSize && f[i-1][j+1]!=0) {
+		return 1;
+        }
     }
     if (i+1<boardSize) {
         if (f[i+1][j]!=0) {
 		return 1;
 	}
-        if (j>0 && f[i+1][j-1]!=0) {
+    if (j>0 && f[i+1][j-1]!=0) {
 		return 1;
 	}
-        if (j+1<boardSize && f[i+1][j+1]!=0) {
+    if (j+1<boardSize && f[i+1][j+1]!=0) {
 		return 1;
-	}
+	    }
     }
     return 0;
 }
+/**
+*@var w 
+*@var nPos 
+*@var dirA 
+*/
             w=new Array(0,20,17,15.4,14,10);
             nPos=new Array();
             dirA=new Array();
@@ -147,6 +165,10 @@ function hasNeighbors(i,j) {
 *
 * Отвечает за отслеживание соединяемых точек и получения
 * из них определенного количества.
+*@param i
+*@param j
+*@param mySq
+*@return 
 *-----------------------------------------
 */			
 			
@@ -160,7 +182,7 @@ function winningPos(i,j,mySq) {
     }
     side1=(j+m1<boardSize && f[i][j+m1]==0);
     side2=(j-m2>=0 && f[i][j-m2]==0);
-    if (L==4 && (side1 || side2)) test3++;
+    if (L==4 && (side1 || side2)) test3++; {
     if (side1 && side2) {
         if (L==4) return openFour;
         if (L==3) test3++;
