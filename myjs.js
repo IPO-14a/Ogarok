@@ -8,7 +8,7 @@ myTurn=false;
 winningMove=9999999;
 openFour   =8888888;
 twoThrees  =7777777;
-    if (document.images) {
+if (document.images) {
         uImg=new Image(16,16); uImg.src='s'+userSq+'.gif';
         mImg=new Image(16,16); mImg.src='s'+machSq+'.gif';
         bImg=new Image(16,16); bImg.src='s0.gif';
@@ -21,16 +21,16 @@ twoThrees  =7777777;
 var f=new Array();
 var s=new Array();
 var q=new Array();
-    for (i = 0;i < 20;i ++) {
-        f[i] = new Array();
-        s[i] = new Array();
-        q[i] = new Array();
-            for (j = 0;j < 20;j ++) {
+for (i = 0;i < 20;i ++) {
+    f[i] = new Array();
+    s[i] = new Array();
+    q[i] = new Array();
+        for (j = 0;j < 20;j ++) {
                 f[i][j] = 0;
                 s[i][j] = 0;
                 q[i][j] = 0;
-             }
-      }
+        }
+}
 iLastUserMove=0;
 jLastUserMove=0;
 /**
@@ -44,11 +44,11 @@ jLastUserMove=0;
 */
 function clk(iMove,jMove) {
     if (myTurn) {
-	    return;
+        return;
     }
     if (f[iMove][jMove]!=0) {
-	    alert('This square is not empty! Please choose another.'); 
-	    return; 
+        alert('This square is not empty! Please choose another.'); 
+	return; 
     }
     f[iMove][jMove]=userSq;
     drawSquare(iMove,jMove,userSq);    myTurn=true;
