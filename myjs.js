@@ -97,8 +97,8 @@ function machineMove( iUser, jUser ) {
  // alert ('maxS='+maxS+', maxQ='+maxQ);
     if ( maxQ >= maxS ) {
         maxS = -1;
-        for ( i=0; i<boardSize; i++ ) {
-            for ( j=0; j<boardSize; j++ ) {
+        for ( i = 0; i < boardSize; i++ ) {
+            for ( j = 0; j < boardSize; j++ ) {
                 if ( q[i] [j] == maxQ && s[i] [j] > maxS ) {
                     maxS = s[i] [j]; 
                     iMach = i;
