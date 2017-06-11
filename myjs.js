@@ -21,14 +21,12 @@ winningMove = 9999999;
 openFour = 8888888;
 twoThrees = 7777777;
 if (document.images) {
-        uImg = new Image( 16, 16 ); 
-		uImg.src='s'+userSq+'.gif';
-		
-        mImg = new Image( 16, 16 ); 
-		mImg.src='s'+machSq+'.gif';
-		
-        bImg = new Image( 16, 16); 
-		bImg.src='s0.gif';
+    uImg = new Image( 16, 16 ); 
+    uImg.src='s'+userSq+'.gif';
+    mImg = new Image( 16, 16 ); 
+     mImg.src='s'+machSq+'.gif';
+    bImg = new Image( 16, 16); 
+    bImg.src='s0.gif';
 }
 /**
 * @var f  Массив первого столбца
@@ -43,9 +41,9 @@ for (i = 0; i < 20; i ++) {
     s[i] = new Array();
     q[i] = new Array();
         for (j = 0;j < 20;j ++) {
-                f[i][j] = 0;
-                s[i][j] = 0;
-                q[i][j] = 0;
+            f[i][j] = 0;
+            s[i][j] = 0;
+            q[i][j] = 0;
         }
 }
 /**
@@ -73,12 +71,12 @@ function clk( iMove, jMove ) {
     }
     f[iMove] [jMove] = userSq;
     drawSquare( iMove, jMove, userSq );    
-	myTurn = true;
+    myTurn = true;
     iLastUserMove = iMove;
     jLastUserMove = jMove;
     dly = (document.images)?10:boardSize*30;
     if (winningPos( iMove, jMove, userSq ) == winningMove) {
-	    setTimeout("alert('You won!');", dly);
+        setTimeout("alert('You won!');", dly);
     } else {
         setTimeout("machineMove(iLastUserMove,jLastUserMove);", dly);
         }
@@ -94,7 +92,6 @@ function clk( iMove, jMove ) {
 function machineMove( iUser, jUser ) {
     maxS=evaluatePos( s, userSq );
     maxQ=evaluatePos( q, machSq );
- // alert ('maxS='+maxS+', maxQ='+maxQ);
     if ( maxQ >= maxS ) {
         maxS = -1;
         for ( i = 0; i < boardSize; i++ ) {
