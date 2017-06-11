@@ -61,7 +61,7 @@ jLastUserMove = 0;
 *@param jMove положение 
 *@return текущее положение 
 */
-function clk( iMove, jMove ) {
+ function clk( iMove, jMove ) {
     if ( myTurn ) {
         return;
     }
@@ -85,7 +85,7 @@ function clk( iMove, jMove ) {
 *
 * В зависимости от поставленной пользователем метки
 * компьютер пытается перекрыть ближайший символ.
-*@param iUser
+ *@param iUser
 *@param jUser
 */
 function machineMove( iUser, jUser ) {
@@ -103,16 +103,16 @@ function machineMove( iUser, jUser ) {
             }
         }
     } else {
-     maxQ = -1;
-     for ( i=0; i<boardSize; i++) {
-         for ( j=0; j<boardSize; j++) {
-             if (s[i] [j] == maxS && q[i] [j] > maxQ ) {
-                 maxQ = q[i] [j]; 
-                 iMach = i;
-                 jMach = j;
+        maxQ = -1;
+        for ( i=0; i<boardSize; i++) {
+            for ( j=0; j<boardSize; j++) {
+                if (s[i] [j] == maxS && q[i] [j] > maxQ ) {
+                    maxQ = q[i] [j]; 
+                    iMach = i;
+                    jMach = j;
+                 }
             }
         }
-    }
 }
 f[iMach][jMach] = machSq;
     if (document.images) {
