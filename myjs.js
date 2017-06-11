@@ -123,7 +123,7 @@ f[iMach][jMach] = machSq;
         }
     if (winningPos( iMach, jMach, machSq) == winningMove) {
 	    setTimeout("alert('I won!')", 900);
-    } else {
+     } else {
         setTimeout("myTurn=false;", 950);
     }
 }
@@ -166,9 +166,9 @@ function hasNeighbors( i, j ) {
 	}
     if ( j + 1 < boardSize && f[ i + 1 ][ j + 1 ] != 0 ) {
         return 1; 
-	    }
+        }
     }
-       return 0;
+        return 0;
 }
 /**
 * @var w Array Выигрышная  позиция 
