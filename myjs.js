@@ -149,25 +149,25 @@ function hasNeighbors( i, j ) {
     }
     if ( i > 0 ) {
         if ( f[i-1] [j] != 0 ) {
-		return 1;
+	    return 1;
         }
 	}
         if ( j > 0 && f[i-1] [j-1] != 0 ) {
-		return 1;
+	    return 1;
 	}
         if ( j + 1 < boardSize && f[i-1] [j+1] !=0 ) {
-		return 1;
+	    return 1;
         }
     }
     if ( i + 1 < boardSize ) {
         if ( f[ i + 1 ][j] != 0 ) {
-		return 1;
+	    return 1;
 	}
     if ( j > 0 && f[ i + 1 ][ j - 1 ] != 0 ) {
-		return 1;
+	    return 1;
 	}
     if ( j + 1 < boardSize && f[ i + 1 ][ j + 1 ] != 0 ) {
-		return 1;
+	    return 1;
 	    }
     }
     return 0;
