@@ -171,9 +171,9 @@ function hasNeighbors( i, j ) {
        return 0;
 }
 /**
-*@var w Array Выигрышная  позиция 
-*@var nPos Array Текущая позиция
-*@var dirA Array Направление позиции
+* @var w Array Выигрышная  позиция 
+* @var nPos Array Текущая позиция
+* @var dirA Array Направление позиции
 */
 w = new Array( 0, 20, 17, 15.4, 14, 10 );
 nPos = new Array();
