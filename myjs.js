@@ -1,21 +1,21 @@
 /**
-* @var ie4  Netscape ie4
-* @var ie3  Netscape ie4
-* @var boardSiz  Размер игрового поля
-* @var userSq  Очередь пользователя
-* @var machSq  Очередь машины
-* @var blinkSq  Очередь (определение)
-* @var myTurn  Инициализирующая очередь пользователя
-* @var winningMove  Выигрышная комбинация
-* @var openFour  Выигрышная комбинация 2
-* @var twoThrees  Выигрышная комбинация 3
+* @var ie4  Netscape ie4 int 
+* @var ie3  Netscape ie4 int 
+* @var boardSiz int Размер игрового поля
+* @var userSq int Очередь пользователя
+* @var machSq int Очередь машины
+* @var blinkSq int Очередь (определение)
+* @var myTurn  bool Инициализирующая очередь пользователя
+* @var winningMove int  Выигрышная комбинация
+* @var openFour  int Выигрышная комбинация 2
+* @var twoThrees  int Выигрышная комбинация 3
 */
 ie4 = ( navigator.appName.indexOf ("Microsoft") != -1 && parseInt( navigator.appVersion ) > 3 ) ?true:false;
 ie3 = ( navigator.appName.indexOf ("Microsoft") != -1 && parseInt( navigator.appVersion ) < 4 ) ?true:false;
 boardSiz = 15;
 userSq = 1;
 machSq = -1;
-blinkSq = "b-1";
+nblinkSq = "b-1";
 myTurn = false;
 winningMove = 9999999;
 openFour = 8888888;
@@ -29,9 +29,9 @@ if (document.images) {
     bImg.src='s0.gif';
 }
 /**
-* @var f  Массив первого столбца
-* @var s  Массив второго столбца
-* @var q  Массив третьего столбца
+* @var f Array Массив первого столбца
+* @var s Array Массив второго столбца
+* @var q Array Массив третьего столбца
 */
 var f = new Array();
 var s = new Array();
@@ -40,15 +40,15 @@ for (i = 0; i < 20; i ++) {
     f[i] = new Array();
     s[i] = new Array();
     q[i] = new Array();
-        for (j = 0;j < 20;j ++) {
+        for (j = 0; j < 20; j ++) {
             f[i][j] = 0;
             s[i][j] = 0;
             q[i][j] = 0;
         }
 }
 /**
-* @var iLastUserMove  Сохранение движения пользователя [i]
-* @var jLastUserMove  Сохранение движения пользователя [j]
+* @var iLastUserMove int Сохранение движения пользователя [i]
+* @var jLastUserMove int Сохранение движения пользователя [j]
 */
 iLastUserMove = 0;
 jLastUserMove = 0;
@@ -67,19 +67,18 @@ function clk( iMove, jMove ) {
     }
     if ( f [iMove] [jMove] != 0 ) {
         alert('This square is not empty! Please choose another.'); 
-	return; 
+        return; 
     }
     f[iMove] [jMove] = userSq;
     drawSquare( iMove, jMove, userSq );    
     myTurn = true;
     iLastUserMove = iMove;
     jLastUserMove = jMove;
-    dly = (document.images)?10:boardSize*30;
-    if (winningPos( iMove, jMove, userSq ) == winningMove) {
+    dly = (document.images)?10:boardSize*30;    if (winningPos( iMove, jMove, userSq ) == winningMove) {
         setTimeout("alert('You won!');", dly);
     } else {
         setTimeout("machineMove(iLastUserMove,jLastUserMove);", dly);
-        }
+    }
 }
 /**
 * Функция заполнения поля компьютером
@@ -111,11 +110,11 @@ function machineMove( iUser, jUser ) {
                  maxQ = q[i] [j]; 
                  iMach = i;
                  jMach = j;
-             }
-         }
-     }
- }
- f[iMach][jMach] = machSq;
+            }
+        }
+    }
+}
+f[iMach][jMach] = machSq;
     if (document.images) {
         drawSquare( iMach, jMach, blinkSq );
         setTimeout("drawSquare(iMach,jMach,machSq);", 900);
@@ -126,7 +125,7 @@ function machineMove( iUser, jUser ) {
 	    setTimeout("alert('I won!')", 900);
     } else {
         setTimeout("myTurn=false;", 950);
-        }
+    }
 }
 /**
 * Функция определение сосодних точек
@@ -172,12 +171,11 @@ function hasNeighbors( i, j ) {
        return 0;
 }
 /**
-*@var w Выигрышная  позиция
-*@var nPos Текущая позиция
-*@var dirA Направление позиции
+*@var w Array Выигрышная  позиция 
+*@var nPos Array Текущая позиция
+*@var dirA Array Направление позиции
 */
 w = new Array( 0, 20, 17, 15.4, 14, 10 );
 nPos = new Array();
 dirA = new Array();
 }
-
