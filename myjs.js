@@ -39,12 +39,12 @@ var q = new Array();
 for (i = 0; i < 20; i ++) {
     f[i] = new Array();
     s[i] = new Array();
-     q[i] = new Array();
-        for (j = 0; j < 20; j ++) {
-            f[i][j] = 0;
-            s[i][j] = 0;
-            q[i][j] = 0;
-        }
+    q[i] = new Array();
+    for (j = 0; j < 20; j ++) {
+        f[i][j] = 0;
+        s[i][j] = 0;
+        q[i][j] = 0;
+    }
 }
 /**
 * @var iLastUserMove int Сохранение движения пользователя [i]
@@ -86,7 +86,7 @@ jLastUserMove = 0;
 *
 * В зависимости от поставленной пользователем метки
 * компьютер пытается перекрыть ближайший символ.
- *@param iUser
+*@param iUser
 *@param jUser
 */
 function machineMove( iUser, jUser ) {
@@ -114,16 +114,16 @@ function machineMove( iUser, jUser ) {
                  }
             }
         }
-}
-f[iMach][jMach] = machSq;
-    if (document.images) {
-        drawSquare( iMach, jMach, blinkSq );
-        setTimeout("drawSquare(iMach,jMach,machSq);", 900);
-    } else {
-        drawSquare( iMach, jMach, machSq);
+    }
+    f[iMach][jMach] = machSq;
+        if (document.images) {
+            drawSquare( iMach, jMach, blinkSq );
+            setTimeout("drawSquare(iMach,jMach,machSq);", 900);
+        } else {
+            drawSquare( iMach, jMach, machSq);
         }
     if (winningPos( iMach, jMach, machSq) == winningMove) {
-	    setTimeout("alert('I won!')", 900);
+        setTimeout("alert('I won!')", 900);
      } else {
         setTimeout("myTurn=false;", 950);
     }
@@ -156,7 +156,6 @@ function hasNeighbors( i, j ) {
     }
     if ( j + 1 < boardSize && f[i-1] [j+1] !=0 ) {
         return 1;
-        }
     }
     if ( i + 1 < boardSize ) {
         if ( f[ i + 1 ][j] != 0 ) {
@@ -179,4 +178,3 @@ function hasNeighbors( i, j ) {
 w = new Array( 0, 20, 17, 15.4, 14, 10 );
 nPos = new Array();
 dirA = new Array();
-}
