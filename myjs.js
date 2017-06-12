@@ -122,11 +122,11 @@ function machineMove( iUser, jUser ) {
         } else {
             drawSquare( iMach, jMach, machSq);
         }
-    if (winningPos( iMach, jMach, machSq) == winningMove) {
-        setTimeout("alert('I won!')", 900);
-     } else {
-        setTimeout("myTurn=false;", 950);
-    }
+        if (winningPos( iMach, jMach, machSq) == winningMove) {
+            setTimeout("alert('I won!')", 900);
+        } else {
+            setTimeout("myTurn=false;", 950);
+        }
 }
 /**
 * Функция определение сосодних точек
