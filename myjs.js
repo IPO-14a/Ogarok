@@ -57,8 +57,8 @@ jLastUserMove = 0;
 *
 * Обрабатывает нажатие по полю и заполнение поля пустыми блоками.
 * Так же обрабатывается нажатие по заполненной клетке.
-*@param iMove положение 
-*@param jMove положение 
+*@param iMove int положение [i]
+*@param jMove int положение [j]
 *@return текущее положение 
 */
 function clk( iMove, jMove ) {
@@ -86,8 +86,8 @@ function clk( iMove, jMove ) {
 *
 * В зависимости от поставленной пользователем метки
 * компьютер пытается перекрыть ближайший символ.
-*@param iUser
-*@param jUser
+*@param iUser int [i]
+*@param jUser int [j]
 */
 function machineMove( iUser, jUser ) {
     maxS=evaluatePos( s, userSq );
@@ -116,25 +116,25 @@ function machineMove( iUser, jUser ) {
         }
     }
     f[iMach][jMach] = machSq;
-        if (document.images) {
-            drawSquare( iMach, jMach, blinkSq );
-            setTimeout("drawSquare(iMach,jMach,machSq);", 900);
-        } else {
-            drawSquare( iMach, jMach, machSq);
-        }
-        if (winningPos( iMach, jMach, machSq) == winningMove) {
-            setTimeout("alert('I won!')", 900);
-        } else {
-            setTimeout("myTurn=false;", 950);
-        }
+    if (document.images) {
+        drawSquare( iMach, jMach, blinkSq );
+        setTimeout("drawSquare(iMach,jMach,machSq);", 900);
+    } else {
+        drawSquare( iMach, jMach, machSq);
+    }
+    if (winningPos( iMach, jMach, machSq) == winningMove) {
+        setTimeout("alert('I won!')", 900);
+    } else {
+        setTimeout("myTurn=false;", 950);
+    }
 }
 /**
 * Функция определение сосодних точек
 *
 * Определяет массив из точек, которые нужно соединить.
 *
-* @param i Координата по [i]
-* @param j Координата по [j]
+* @param i int Координата по [i]
+* @param j int Координата по [j]
 *
 * @return Возвращает 0 или 1 в зависимости от того
 * можно ли провести точку или нет.
