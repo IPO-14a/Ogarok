@@ -1,5 +1,4 @@
-/**
-* @var ie4 int Netscape ie4  
+/** @var ie4 int Netscape ie4  
 * @var ie3 int Netscape ie4  
 * @var boardSiz int Размер игрового поля
 * @var userSq int Очередь пользователя
@@ -29,7 +28,7 @@ if (document.images) {
     bImg.src='s0.gif';
 }
 /**
-* @var f Array Массив первого столбца
+ * @var f Array Массив первого столбца
 * @var s Array Массив второго столбца
 * @var q Array Массив третьего столбца
 */
@@ -39,7 +38,7 @@ var q = new Array();
 for (i = 0; i < 20; i ++) {
     f[i] = new Array();
     s[i] = new Array();
-    q[i] = new Array();
+     q[i] = new Array();
         for (j = 0; j < 20; j ++) {
             f[i][j] = 0;
             s[i][j] = 0;
@@ -49,7 +48,7 @@ for (i = 0; i < 20; i ++) {
 /**
 * @var iLastUserMove int Сохранение движения пользователя [i]
 * @var jLastUserMove int Сохранение движения пользователя [j]
-*/
+ */
 iLastUserMove = 0;
 jLastUserMove = 0;
 /**
@@ -74,7 +73,8 @@ jLastUserMove = 0;
     myTurn = true;
     iLastUserMove = iMove;
     jLastUserMove = jMove;
-    dly = (document.images)?10:boardSize*30;    if (winningPos( iMove, jMove, userSq ) == winningMove) {
+    dly = (document.images)?10:boardSize*30;   
+    if (winningPos( iMove, jMove, userSq ) == winningMove) {
         setTimeout("alert('You won!');", dly);
     } else {
         setTimeout("machineMove(iLastUserMove,jLastUserMove);", dly);
