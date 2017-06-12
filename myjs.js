@@ -29,7 +29,7 @@ if (document.images) {
     bImg.src='s0.gif';
 }
 /**
- * @var f Array Массив первого столбца
+* @var f Array Массив первого столбца
 * @var s Array Массив второго столбца
 * @var q Array Массив третьего столбца
 */
