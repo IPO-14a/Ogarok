@@ -1,5 +1,6 @@
-/** @var ie4 int Netscape ie4  
-* @var ie3 int Netscape ie4  
+/**
+* @var ie4 int Netscape ie4  
+* @var ie3 int Netscape ie3  
 * @var boardSiz int Размер игрового поля
 * @var userSq int Очередь пользователя
 * @var machSq int Очередь машины
