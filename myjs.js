@@ -111,7 +111,7 @@ function machineMove( iUser, jUser ) {
                     maxQ = q[i] [j]; 
                     iMach = i;
                     jMach = j;
-                 }
+                }
             }
         }
     }
